@@ -26,7 +26,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
 }
 
 .dashboard-title {
@@ -49,6 +49,32 @@
   background-color: #b91c1c;
 }
 
+/* === Filter Section === */
+.filter-section {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 1.5rem;
+}
+
+.filter-section input,
+.filter-section select {
+  flex: 1;
+  min-width: 200px;
+  padding: 8px 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  font-size: 14px;
+  transition: all 0.2s ease;
+}
+
+.filter-section input:focus,
+.filter-section select:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 3px rgba(37, 99, 235, 0.3);
+}
+
 /* === Add Task Form === */
 .task-form-container {
   background: #f9fafb;
@@ -66,135 +92,6 @@
 }
 
 /* === Inside TaskForm.jsx Styling === */
-.task-form {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-
-.task-form input,
-.task-form textarea,
-.task-form select {
-  flex: 1;
-  min-width: 150px;
-  padding: 10px 12px;
-  border-radius: 6px;
-  border: 1px solid #d1d5db;
-  font-size: 14px;
-  transition: 0.2s;
-}
-
-.task-form input:focus,
-.task-form textarea:focus,
-.task-form select:focus {
-  outline: none;
-  border-color: #2563eb;
-  box-shadow: 0 0 3px rgba(37, 99, 235, 0.3);
-}
-
-.task-form button {
-  background-color: #2563eb;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  padding: 10px 20px;
-  font-size: 14px;
-  font-weight: 500;
-  transition: 0.3s;
-}
-
-.task-form button:hover {
-  background-color: #1e40af;
-}
-
-/* === Table === */
-.task-table-wrapper {
-  overflow-x: auto;
-}
-
-.task-table {
-  width: 100%;
-  border-collapse: collapse;
-  border-radius: 8px;
-  overflow: hidden;
-}
-
-.task-table th,
-.task-table td {
-  padding: 12px;
-  border: 1px solid #e5e7eb;
-  font-size: 14px;
-  text-align: left;
-}
-
-.task-table th {
-  background-color: #eff6ff;
-  color: #1e3a8a;
-  font-weight: 600;
-}
-
-.task-table tr:hover {
-  background-color: #f9fafb;
-}
-
-/* === Status Tags === */
-.status-tag {
-  display: inline-block;
-  padding: 4px 10px;
-  border-radius: 12px;
-  font-size: 13px;
-  font-weight: 600;
-  text-transform: capitalize;
-}
-
-.status-tag.pending {
-  background-color: #fef3c7;
-  color: #92400e;
-}
-
-.status-tag.completed {
-  background-color: #dcfce7;
-  color: #166534;
-}
-
-/* === Buttons === */
-.action-btn {
-  border: none;
-  border-radius: 6px;
-  padding: 6px 10px;
-  font-size: 13px;
-  font-weight: 600;
-  margin-right: 5px;
-  transition: 0.2s;
-  color: white;
-}
-
-.edit-btn {
-  background-color: #fbbf24;
-}
-
-.edit-btn:hover {
-  background-color: #f59e0b;
-}
-
-.delete-btn {
-  background-color: #ef4444;
-}
-
-.delete-btn:hover {
-  background-color: #dc2626;
-}
-
-/* === Empty State === */
-.no-tasks {
-  text-align: center;
-  padding: 1.5rem;
-  color: #6b7280;
-  font-style: italic;
-}
-
-
-/* ---------- Task Form Styling ---------- */
 .task-form {
   display: flex;
   flex-wrap: wrap;
@@ -254,6 +151,93 @@
   transform: scale(0.98);
 }
 
+/* === Table === */
+.task-table-wrapper {
+  overflow-x: auto;
+  border-radius: 8px;
+}
+
+.task-table {
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.task-table th,
+.task-table td {
+  padding: 12px;
+  border: 1px solid #e5e7eb;
+  font-size: 14px;
+  text-align: left;
+}
+
+.task-table th {
+  background-color: #eff6ff;
+  color: #1e3a8a;
+  font-weight: 600;
+}
+
+.task-table tr:hover {
+  background-color: #f9fafb;
+}
+
+/* === Status Tags === */
+.status-tag {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.status-tag.pending {
+  background-color: #fef3c7;
+  color: #92400e;
+}
+
+.status-tag.completed {
+  background-color: #dcfce7;
+  color: #166534;
+}
+
+/* === Buttons === */
+.action-btn {
+  border: none;
+  border-radius: 6px;
+  padding: 6px 10px;
+  font-size: 13px;
+  font-weight: 600;
+  margin-right: 5px;
+  transition: 0.2s;
+  color: white;
+  cursor: pointer;
+}
+
+.edit-btn {
+  background-color: #fbbf24;
+}
+
+.edit-btn:hover {
+  background-color: #f59e0b;
+}
+
+.delete-btn {
+  background-color: #ef4444;
+}
+
+.delete-btn:hover {
+  background-color: #dc2626;
+}
+
+/* === Empty State === */
+.no-tasks {
+  text-align: center;
+  padding: 1.5rem;
+  color: #6b7280;
+  font-style: italic;
+}
 
 /* ---------- Edit Task Form Styling ---------- */
 .edit-form {
@@ -339,7 +323,38 @@
   background-color: #15803d;
 }
 
-/* Subtle animation */
+/* === Pagination === */
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+
+.pagination button {
+  padding: 8px 14px;
+  border: none;
+  background: #2563eb;
+  color: white;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.pagination button:hover:not(:disabled) {
+  background: #1e40af;
+}
+
+.pagination button:disabled {
+  background: #9ca3af;
+  cursor: not-allowed;
+}
+
+/* === Animation === */
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -351,39 +366,35 @@
   }
 }
 
+/* === Responsive Fix === */
+@media (max-width: 600px) {
+  .dashboard-box {
+    padding: 1.2rem;
+  }
 
-.filter-section {
-  display: flex;
-  justify-content: space-between;
-  margin: 10px 0;
-  gap: 10px;
-}
+  .dashboard-header {
+    flex-direction: column;
+    gap: 10px;
+  }
 
-.filter-section input,
-.filter-section select {
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-}
+  .filter-section {
+    flex-direction: column;
+    gap: 10px;
+  }
 
-.pagination {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 12px;
-  margin-top: 16px;
-}
+  .task-form {
+    flex-direction: column;
+  }
 
-.pagination button {
-  padding: 6px 12px;
-  border: none;
-  background: #007bff;
-  color: white;
-  border-radius: 6px;
-  cursor: pointer;
-}
+  .task-btn {
+    width: 100%;
+  }
 
-.pagination button:disabled {
-  background: #ccc;
-  cursor: not-allowed;
+  .edit-actions {
+    flex-direction: column;
+  }
+
+  .edit-actions button {
+    width: 100%;
+  }
 }
