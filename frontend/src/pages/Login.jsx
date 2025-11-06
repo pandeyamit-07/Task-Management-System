@@ -23,7 +23,7 @@ function Login() {
   return (
     <div className="auth-page">
       <div className="auth-box">
-        <h1 className="auth-title">🔐 Login</h1>
+        <h1 className="auth-title">🔐 Login here</h1>
 
         <form className="auth-form" onSubmit={handleSubmit}>
           <input
