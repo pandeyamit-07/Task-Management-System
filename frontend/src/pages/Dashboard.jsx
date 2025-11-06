@@ -12,7 +12,6 @@ function Dashboard() {
   const [totalPages, setTotalPages] = useState(1);
   const [statusFilter, setStatusFilter] = useState("");
   const [search, setSearch] = useState("");
-
   const navigate = useNavigate();
 
   const fetchTasks = async () => {
@@ -23,7 +22,6 @@ function Dashboard() {
         `/tasks?page=${page}&limit=5&status=${statusFilter}&search=${search}`,
         { headers: { Authorization: `Bearer ${token}` } }
       );
-
       setTasks(res.data.tasks);
       setTotalPages(res.data.totalPages);
     } catch (err) {
@@ -36,7 +34,40 @@ function Dashboard() {
     fetchTasks();
   }, [page, statusFilter, search]);
 
-  // Delete + Edit + Update same as before ...
+  // 🔹 HANDLE DELETE
+  const handleDelete = async (id) => {
+    if (!confirm("Are you sure you want to delete this task?")) return;
+    try {
+      const token = localStorage.getItem("token");
+      await axios.delete(`/tasks/${id}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      fetchTasks();
+    } catch (error) {
+      console.error(error);
+      alert("Error deleting task");
+    }
+  };
+
+  // 🔹 HANDLE EDIT
+  const handleEdit = (task) => {
+    setEditTask(task);
+  };
+
+  // 🔹 HANDLE UPDATE
+  const handleUpdate = async (updatedTask) => {
+    try {
+      const token = localStorage.getItem("token");
+      await axios.patch(`/tasks/${updatedTask._id}`, updatedTask, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      setEditTask(null);
+      fetchTasks();
+    } catch (error) {
+      console.error(error);
+      alert("Error updating task");
+    }
+  };
 
   return (
     <div className="dashboard">
@@ -97,10 +128,7 @@ function Dashboard() {
 
         {/* Pagination */}
         <div className="pagination">
-          <button
-            disabled={page === 1}
-            onClick={() => setPage(page - 1)}
-          >
+          <button disabled={page === 1} onClick={() => setPage(page - 1)}>
             ⬅ Prev
           </button>
           <span>
