@@ -1,6 +1,8 @@
 // src/components/TaskForm.jsx
 import { useState } from "react";
 import axios from "../api/axiosInstance";
+import "../styles/Dashboard.css";
+
 
 function TaskForm({ onTaskAdded }) {
   const [title, setTitle] = useState("");
